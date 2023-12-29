@@ -1,0 +1,67 @@
+# file name
+# 1 oil
+# 2 oil filter
+# 3 air filter
+# 4 cabin filter
+# 5 tire
+# 6 tire sensor
+# 7 rear brake rotors
+# 8 rear brake pads
+# 9 front brake rotors
+# 10 front brake pads
+
+
+
+f1
+1* 5W-20
+2* FL-500S
+3* FA-1884
+4* FP-68
+5* N-P245-55R18
+6* F2GZ-1A189-A or 9L3Z-1A189-A
+7* DG1Z-2C026-A
+8* DG1Z-2200-B
+9* EU2Z-1V125-A
+10*  DG1Z-2001-F
+
+
+
+f2
+1* 5W-20
+2* FL-500S
+3* FA-1947
+4* FP-100-A
+5* 732005563
+6* JX7Z-1A189-C
+7* L1MZ-2C026-A
+8* L1MZ-2200-F
+9* L1MZ-1125-C
+10* L1MZ-2001-G
+
+
+
+c1
+1* 0W-20
+2* PF63
+3* A3218C
+4* CF188
+5* N-P265-60-R17
+6* 13540600
+7* 84223345
+8* 84176465
+9* 231144341
+10* 84218394
+
+
+
+d1
+1* 5W-20
+2* 68191349AC
+3* 4861746AB
+4* 68535614AA
+5* N-P245-55R18
+6*
+7* 68368073AA
+8* 68245118AB
+9* 68368069AA
+10* 68245089AA
