@@ -41,6 +41,18 @@ print("---a Pi Pico Programmable Companion Mini Keyboard---")
 
 onboardLED = digitalio.DigitalInOut(board.LED)
 onboardLED.direction = digitalio.Direction.OUTPUT
+
+onboardLED.value = True
+keybd.press(Keycode.G)
+time.sleep(0.01)
+keybd.release(Keycode.G)
+keybd.press(Keycode.Q)
+time.sleep(0.01)
+keybd.release(Keycode.Q)
+time.sleep(0.333)
+onboardLED.value = False
+
+
 rotaryEncoder = rotaryio.IncrementalEncoder(board.GP10, board.GP9) #TOD: D? or GP?
 keybd = Keyboard(usb_hid.devices)
 keybdLayout = KeyboardLayoutUS(keybd)
