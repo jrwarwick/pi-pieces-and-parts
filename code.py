@@ -36,7 +36,8 @@ COLOR_INDICATION = { 'ford':    "blue",
                      'special': "green"
                    }
 
-print("---Pi Pico Programmable Companion Mini Keyboard---")
+print("---             Pi Pieces and Parts             ---")
+print("---a Pi Pico Programmable Companion Mini Keyboard---")
 
 onboardLED = digitalio.DigitalInOut(board.LED)
 onboardLED.direction = digitalio.Direction.OUTPUT
@@ -77,24 +78,28 @@ button[1][3].pull = digitalio.Pull.UP
 indicatorLED = []
 
 def readConfigFile(cfgFilename):
-    #Standardized filename format: #_button_index_Make_Model.txt
-    #Though it should not matter inside this function.
+    #Standardized filename format: #pi part numbers.txt
+    #broken into sections by whitespace, a color header,
+    #the rest is line-by-line button macro assignments.
     realConfigLine = 0
-    ignoredConfigCharacters = "┌┬┐├┼┤│─└┴┘ô"  # the diagram drawing stuff.
-    datafieldsRegEx = re.compile('[ ┼│┴─]+')  # just a subset of digram drawing stuff that should appear directly on a data-bearing line.
+    datafieldsRegEx = re.compile('[\t:\*|│]+')  # just a subset of digram drawing stuff that should appear directly on a data-bearing line.
     buttonMacroMap  = [["" for x in range(BUTTON_COLUMNS)] for y in range(BUTTON_ROWS)]
+    blanklineCount = 0
 
     f = open(cfgFilename)
     for line in f.readlines():
         if re.match("^ *$",line):    # ignore blank lines.
-            pass
+            blanklineCount += 1
         elif re.match("^ *#",line):  # don't process comments, but report them on console.
             onboardLED.value = True
             print("COMMENT: " + line)
         else:
+            blanklineCount = 0
             fields = datafieldsRegEx.split(line)
-            #DEBUG#print("\t" + str(len(fields)) + "l:  " + " ".join(fields) )
-            #DEBUG#print(re.search("[a-zA-Z0-9]{2,}"," ".join(fields)) )
+            #DEBUG#
+            print("\t" + str(len(fields)) + "l:  " + " ".join(fields) )
+            #DEBUG#
+            print(re.search("[a-zA-Z0-9]{2,}"," ".join(fields)) )
             # After a split: if it broke up into right number of fields
             # AND there was at least a little "realish-looking" data mixed in,
             # THEN /probably/ it is a valid config line.
@@ -122,7 +127,7 @@ controlSet = []
 #   (but if you do this, limit to first n = ROTARY_POSITIONS files)
 for filename in os.listdir():
     #Order by alpha
-    if re.match("[0-9]+[_-]+button[_-]*index[_-]+\w+[_-]+\w+\.txt",filename):
+    if re.match("pi[ _]*part[ _]*numbers.txt",filename,re.IGNORECASE):
         print("  Found valid config file: " + filename)
         #TODO: try/catch block
         controlSet.append(readConfigFile(filename))
